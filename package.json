@@ -30,12 +30,14 @@
     "test": "vp test",
     "check": "vp check",
     "prepublishOnly": "vp run build",
-    "prepare": "vp config"
+    "prepare": "vp config",
+    "test:e2e": "vp test --config vite.e2e.config.ts"
   },
   "dependencies": {
     "meilisearch": "^0.60.0"
   },
   "devDependencies": {
+    "@ai-sdk/openai": "^4.0.28",
     "@types/node": "^26.1.1",
     "ai": "^7.0.50",
     "bumpp": "^11.1.0",
