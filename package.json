@@ -34,6 +34,8 @@
     "test:e2e": "vp test --config vite.e2e.config.ts"
   },
   "dependencies": {
+    "@ai-sdk/provider": "^4.0.5",
+    "@ai-sdk/provider-utils": "^5.0.20",
     "meilisearch": "^0.60.0"
   },
   "devDependencies": {

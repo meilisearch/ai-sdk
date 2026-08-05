@@ -14,7 +14,36 @@ Meilisearch is a search engine for user-facing search and AI retrieval.
 
 ## Installation
 
+```bash
+pnpm add @meilisearch/ai-sdk meilisearch ai zod
+```
+
 ## Quick Start
+
+### Chat completions (LanguageModelV4 provider)
+
+```ts
+import { streamText } from "ai";
+import { createMeilisearch } from "@meilisearch/ai-sdk";
+
+const meilisearch = createMeilisearch({
+  host: process.env.MEILISEARCH_HOST!,
+  apiKey: process.env.MEILISEARCH_API_KEY!,
+  workspace: "cloud",
+});
+
+const result = streamText({
+  model: meilisearch("gpt-4o-mini"),
+  messages: [{ role: "user", content: "What is Meilisearch?" }],
+  tools: meilisearch.chatTools.all,
+});
+
+for await (const text of result.textStream) {
+  process.stdout.write(text);
+}
+```
+
+The chat endpoint is streaming-only (`stream: true`). The `_meiliAppendConversationMessage` tool is exposed, but message-history appending remains app-managed.
 
 ## Setup
 
@@ -23,7 +52,8 @@ Meilisearch is a search engine for user-facing search and AI retrieval.
 ```ts
 import { generateText, stepCountIs } from "ai";
 import { openai } from "@ai-sdk/openai";
-import { Meilisearch, meilisearchSearch } from "@meilisearch/ai-sdk";
+import { Meilisearch } from "meilisearch";
+import { meilisearchSearch } from "@meilisearch/ai-sdk";
 
 const { text } = await generateText({
   model: openai("gpt-4o-mini"),
@@ -45,6 +75,30 @@ console.log(text);
 ```
 
 ## API Reference
+
+Provider:
+
+```ts
+createMeilisearch({
+  host: "http://localhost:7700",
+  apiKey: "masterKey",
+  workspace: "cloud",
+});
+```
+
+Chat tools:
+
+```ts
+meilisearch.chatTools.progress;
+meilisearch.chatTools.sources;
+meilisearch.chatTools.appendMessage;
+meilisearch.chatTools.all;
+```
+
+For chat docs and schema expectations, see:
+
+- [Chat completions API](https://www.meilisearch.com/docs/reference/api/chats/request-a-chat-completion)
+- [Chat tooling reference](https://www.meilisearch.com/docs/capabilities/conversational_search/advanced/chat_tooling_reference)
 
 Search tool:
 
