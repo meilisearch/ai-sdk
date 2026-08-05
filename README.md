@@ -1,6 +1,6 @@
 # Meilisearch AI SDK
 
-Meilisearch is a search engine for user-facing search and AI retrieval.
+Meilisearch is a search engine for user-facing search and AI retrieval. `@meilisearch/ai-sdk` provides tools to add search to your [Vercel AI SDK](https://ai-sdk.dev) apps in a few lines of code.
 
 ## Table of Contents
 
@@ -14,11 +14,11 @@ Meilisearch is a search engine for user-facing search and AI retrieval.
 
 ## Installation
 
+```bash
+npm install @meilisearch/ai-sdk
+```
+
 ## Quick Start
-
-## Setup
-
-## Example
 
 ```ts
 import { generateText } from "ai";
@@ -38,6 +38,49 @@ const { text } = await generateText({
     }),
   },
 });
+
+console.log(text);
+```
+
+## Setup
+
+1. Create a project on [Meilisearch Cloud](https://cloud.meilisearch.com/register) (or [self-host](https://www.meilisearch.com/docs/resources/self_hosting/getting_started/quick_start))
+2. Create a `movies` index and [add documents](https://www.meilisearch.com/docs/resources/self_hosting/getting_started/quick_start#add-documents)
+3. Add your host and API key to `.env`:
+
+```bash
+MEILISEARCH_HOST=https://your-project.meilisearch.io
+MEILISEARCH_API_KEY=your-search-api-key
+```
+
+## Example
+
+Hybrid search with filters, sorting:
+
+```ts
+const { text } = await generateText({
+  model: openai("gpt-4o"),
+  system: "You are a movie assistant. Recommend films using the search tool.",
+  prompt: "Recommend recent action movies about revenge",
+  tools: {
+    search: meilisearchSearch({
+      host: "MEILISEARCH_HOST",
+      apiKey: "YOUR_SEARCH_API_KEY",
+      indexUid: "movies",
+      description: "Search movies by title or synopsis",
+      searchParams: {
+        limit: 10,
+        sort: ["release_date:desc"],
+        hybrid: {
+          embedder: "default",
+          semanticRatio: 0.5,
+        },
+      },
+    }),
+  },
+});
+
+console.log(text);
 ```
 
 ## API Reference
@@ -60,7 +103,7 @@ meilisearchSearch({
   // Optional SearchParams (except q, provided at runtime by the tool call)
   searchParams: {
     limit: 10,
-    filter: "genre = fantasy",
+    filter: "genres = Action",
     sort: ["release_date:desc"],
   },
 });
