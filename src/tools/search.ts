@@ -1,9 +1,15 @@
 import { tool } from "ai";
+import type { Tool } from "ai";
 import { z } from "zod";
 
 import type { MeilisearchSearchToolOptions } from "./types.ts";
 
-export function meilisearchSearch(options: MeilisearchSearchToolOptions) {
+type MeilisearchSearchResult = Awaited<
+  ReturnType<ReturnType<MeilisearchSearchToolOptions["client"]["index"]>["search"]>
+>;
+type MeilisearchSearchTool = Tool<{ q: string }, MeilisearchSearchResult>;
+
+export function meilisearchSearch(options: MeilisearchSearchToolOptions): MeilisearchSearchTool {
   const { client, description, indexUid, searchParams } = options;
 
   return tool({
