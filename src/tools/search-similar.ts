@@ -1,11 +1,13 @@
 import { tool } from "ai";
 import type { Tool } from "ai";
+import type { Meilisearch } from "meilisearch";
 import { z } from "zod";
 
+import { resolveClient } from "./resolve-client.ts";
 import type { SearchSimilarToolOptions } from "./types.ts";
 
 type SearchSimilarResult = Awaited<
-  ReturnType<ReturnType<SearchSimilarToolOptions["client"]["index"]>["searchSimilarDocuments"]>
+  ReturnType<ReturnType<Meilisearch["index"]>["searchSimilarDocuments"]>
 >;
 type SearchSimilarTool = Tool<{ id: string | number }, SearchSimilarResult>;
 
@@ -17,7 +19,8 @@ type SearchSimilarTool = Tool<{ id: string | number }, SearchSimilarResult>;
  * @see {@link https://www.meilisearch.com/docs/reference/api/similar-documents/get-similar-documents-with-post.md}
  */
 export function meilisearchSearchSimilar(options: SearchSimilarToolOptions): SearchSimilarTool {
-  const { client, description, indexUid, searchSimilarParams } = options;
+  const client = resolveClient(options);
+  const { description, indexUid, searchSimilarParams } = options;
 
   return tool({
     description,

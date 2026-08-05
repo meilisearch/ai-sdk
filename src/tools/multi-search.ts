@@ -3,6 +3,7 @@ import type { Tool } from "ai";
 import type { MultiSearchResponse, SearchResponse } from "meilisearch";
 import { z } from "zod";
 
+import { resolveClient } from "./resolve-client.ts";
 import type { MultiSearchToolOptions } from "./types.ts";
 
 type MultiSearchResult = MultiSearchResponse | SearchResponse;
@@ -16,7 +17,8 @@ type MultiSearchTool = Tool<{ q: string }, MultiSearchResult>;
  * @see {@link https://www.meilisearch.com/docs/reference/api/multi-search/perform-a-multi-search.md}
  */
 export function meilisearchMultiSearch(options: MultiSearchToolOptions): MultiSearchTool {
-  const { client, description, queries, federation } = options;
+  const client = resolveClient(options);
+  const { description, queries, federation } = options;
 
   return tool({
     description,

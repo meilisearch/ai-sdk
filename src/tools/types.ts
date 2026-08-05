@@ -7,8 +7,16 @@ import type {
   SearchSimilarDocumentsParams,
 } from "meilisearch";
 
-export type ToolClientOptions = {
-  client: Meilisearch;
+type ToolConnectionOptions =
+  | {
+      client: Meilisearch;
+    }
+  | {
+      host: string;
+      apiKey?: string;
+    };
+
+export type ToolClientOptions = ToolConnectionOptions & {
   description: string;
 };
 

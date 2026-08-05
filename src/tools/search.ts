@@ -1,10 +1,12 @@
 import { tool } from "ai";
 import type { Tool } from "ai";
+import type { Meilisearch } from "meilisearch";
 import { z } from "zod";
 
+import { resolveClient } from "./resolve-client.ts";
 import type { SearchToolOptions } from "./types.ts";
 
-type SearchResult = Awaited<ReturnType<ReturnType<SearchToolOptions["client"]["index"]>["search"]>>;
+type SearchResult = Awaited<ReturnType<ReturnType<Meilisearch["index"]>["search"]>>;
 type SearchTool = Tool<{ q: string }, SearchResult>;
 
 /**
@@ -15,7 +17,8 @@ type SearchTool = Tool<{ q: string }, SearchResult>;
  * @see {@link https://www.meilisearch.com/docs/reference/api/search/search-with-post.md}
  */
 export function meilisearchSearch(options: SearchToolOptions): SearchTool {
-  const { client, description, indexUid, searchParams } = options;
+  const client = resolveClient(options);
+  const { description, indexUid, searchParams } = options;
 
   return tool({
     description,

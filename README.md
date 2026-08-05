@@ -21,37 +21,37 @@ Meilisearch is a search engine for user-facing search and AI retrieval.
 ## Example
 
 ```ts
-import { generateText, stepCountIs } from "ai";
+import { generateText } from "ai";
 import { openai } from "@ai-sdk/openai";
-import { Meilisearch, meilisearchSearch } from "@meilisearch/ai-sdk";
+import { meilisearchSearch } from "@meilisearch/ai-sdk";
 
 const { text } = await generateText({
-  model: openai("gpt-4o-mini"),
-  prompt: "Search for Lord of the Rings movies and summarize briefly what you find.",
+  model: openai("gpt-4o"),
+  system:
+    "You are a movie assistant. Recommend films and where to stream them using the search tool.",
   tools: {
     search: meilisearchSearch({
-      client: new Meilisearch({
-        host: process.env.MEILISEARCH_HOST!,
-        apiKey: process.env.MEILISEARCH_API_KEY,
-      }),
-      indexUid: process.env.MEILISEARCH_INDEX!,
+      host: "MEILISEARCH_HOST",
+      apiKey: "YOUR_SEARCH_API_KEY",
+      indexUid: "movies",
       description: "Search movies by title or synopsis",
     }),
   },
-  stopWhen: stepCountIs(3),
 });
-
-console.log(text);
 ```
 
 ## API Reference
 
-Search tool:
+### Search tool
 
 ```ts
 meilisearchSearch({
-  // Base options
-  client, // Meilisearch client instance
+  // Connect with host + API key
+  host: "MEILISEARCH_HOST",
+  apiKey: "YOUR_SEARCH_API_KEY",
+  // or reuse an existing Meilisearch client instance
+  // client,
+
   description: "Search movies by title or synopsis",
 
   // Search target
@@ -66,14 +66,18 @@ meilisearchSearch({
 });
 ```
 
-For more details, see the [Meilisearch API reference](https://www.meilisearch.com/docs/reference/api/search/search-with-post.md).
+For more details, see the [Search API reference](https://www.meilisearch.com/docs/reference/api/search/search-with-post.md).
 
-Multi-search tool:
+### Multi-search tool
 
 ```ts
 meilisearchMultiSearch({
-  // Base options
-  client, // Meilisearch client instance
+  // Connect with host + API key
+  host: "MEILISEARCH_HOST",
+  apiKey: "YOUR_SEARCH_API_KEY",
+  // or reuse an existing Meilisearch client instance
+  // client,
+
   description: "Search movies and actors",
 
   // Required per-index queries (q is injected at runtime)
@@ -89,14 +93,18 @@ meilisearchMultiSearch({
 });
 ```
 
-For more details, see the [Meilisearch API reference](https://www.meilisearch.com/docs/reference/api/multi-search/perform-a-multi-search.md).
+For more details, see the [Multi-search API reference](https://www.meilisearch.com/docs/reference/api/multi-search/perform-a-multi-search.md).
 
-Search similar tool:
+### Search similar tool
 
 ```ts
 meilisearchSearchSimilar({
-  // Base options
-  client, // Meilisearch client instance
+  // Connect with host + API key
+  host: "MEILISEARCH_HOST",
+  apiKey: "YOUR_SEARCH_API_KEY",
+  // or reuse an existing Meilisearch client instance
+  // client,
+
   description: "Find similar movies",
 
   // Search target
@@ -110,7 +118,7 @@ meilisearchSearchSimilar({
 });
 ```
 
-For more details, see the [Meilisearch API reference](https://www.meilisearch.com/docs/reference/api/similar-documents/get-similar-documents-with-post.md).
+For more details, see the [Similar documents API reference](https://www.meilisearch.com/docs/reference/api/similar-documents/get-similar-documents-with-post.md).
 
 ## Contributing
 
