@@ -1,23 +1,31 @@
-# vite-plus-starter
+# Meilisearch AI SDK
 
-A starter for creating a Vite Plus project.
+Meilisearch is a search engine for user-facing search and AI retrieval.
 
-## Development
+## Table of Contents
 
-- Install dependencies:
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Setup](#setup)
+- [Example](#example)
+- [API Reference](#api-reference)
+- [Contributing](#contributing)
+- [License](#license)
 
-```bash
-vp install
-```
+## Installation
 
-- Run the unit tests:
+## Quick Start
 
-```bash
-vp test
-```
+## Setup
 
-- Build the library:
+## Example
 
-```bash
-vp pack
-```
+## API Reference
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+
+## License
+
+MIT
