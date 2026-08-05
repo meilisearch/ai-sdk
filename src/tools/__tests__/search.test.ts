@@ -20,7 +20,7 @@ const executionOptions = {
 };
 
 describe("meilisearchSearch", () => {
-  test("exposes a query-only validated input contract for the AI", async () => {
+  test("exposes a validated runtime input contract for q", async () => {
     const { client } = createMockClient();
 
     const searchTool = meilisearchSearch({
@@ -44,7 +44,7 @@ describe("meilisearchSearch", () => {
     });
   });
 
-  test("searches the configured index with developer-defined search params", async () => {
+  test("forwards config searchParams with the runtime query", async () => {
     const searchParams = {
       hitsPerPage: 12,
       sort: ["popularity:desc"],
@@ -75,7 +75,7 @@ describe("meilisearchSearch", () => {
     });
   });
 
-  test("propagates Meilisearch client errors", async () => {
+  test("propagates Meilisearch errors", async () => {
     const { client } = createMockClient(vi.fn().mockRejectedValue(new Error("index not found")));
 
     const searchTool = meilisearchSearch({

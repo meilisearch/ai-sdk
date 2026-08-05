@@ -1,4 +1,11 @@
-import type { Meilisearch, SearchParams } from "meilisearch";
+import type {
+  Meilisearch,
+  MultiSearchFederation,
+  MultiSearchQuery,
+  MultiSearchQueryWithFederation,
+  SearchParams,
+  SearchSimilarDocumentsParams,
+} from "meilisearch";
 
 export type ToolClientOptions = {
   client: Meilisearch;
@@ -14,5 +21,10 @@ export type SearchToolOptions = IndexToolOptions & {
 };
 
 export type MultiSearchToolOptions = ToolClientOptions & {
-  indexes: string[];
+  queries: Array<Omit<MultiSearchQuery | MultiSearchQueryWithFederation, "q">>;
+  federation?: MultiSearchFederation;
+};
+
+export type SearchSimilarToolOptions = IndexToolOptions & {
+  searchSimilarParams?: Omit<SearchSimilarDocumentsParams, "id">;
 };

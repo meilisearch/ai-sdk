@@ -6,4 +6,5 @@ export type {
   IndexToolOptions,
   SearchToolOptions,
   MultiSearchToolOptions,
+  SearchSimilarToolOptions,
 } from "./types.ts";

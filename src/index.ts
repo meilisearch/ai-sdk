@@ -8,4 +8,5 @@ export type {
   IndexToolOptions,
   SearchToolOptions,
   MultiSearchToolOptions,
+  SearchSimilarToolOptions,
 } from "./tools/index.ts";
