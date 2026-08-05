@@ -8,6 +8,13 @@ import type { MultiSearchToolOptions } from "./types.ts";
 type MultiSearchResult = MultiSearchResponse | SearchResponse;
 type MultiSearchTool = Tool<{ q: string }, MultiSearchResult>;
 
+/**
+ * Search across multiple indexes in one request
+ *
+ * @param options - Multi-search tool options
+ * @returns AI SDK tool that runs a Meilisearch multi-search query
+ * @see {@link https://www.meilisearch.com/docs/reference/api/multi-search/perform-a-multi-search.md}
+ */
 export function meilisearchMultiSearch(options: MultiSearchToolOptions): MultiSearchTool {
   const { client, description, queries, federation } = options;
 

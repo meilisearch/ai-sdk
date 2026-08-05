@@ -7,6 +7,13 @@ import type { SearchToolOptions } from "./types.ts";
 type SearchResult = Awaited<ReturnType<ReturnType<SearchToolOptions["client"]["index"]>["search"]>>;
 type SearchTool = Tool<{ q: string }, SearchResult>;
 
+/**
+ * Search documents in an index
+ *
+ * @param options - Search tool options
+ * @returns AI SDK tool that runs a Meilisearch search query
+ * @see {@link https://www.meilisearch.com/docs/reference/api/search/search-with-post.md}
+ */
 export function meilisearchSearch(options: SearchToolOptions): SearchTool {
   const { client, description, indexUid, searchParams } = options;
 

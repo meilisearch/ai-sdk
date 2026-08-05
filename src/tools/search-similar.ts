@@ -9,6 +9,13 @@ type SearchSimilarResult = Awaited<
 >;
 type SearchSimilarTool = Tool<{ id: string | number }, SearchSimilarResult>;
 
+/**
+ * Get documents similar to a reference document
+ *
+ * @param options - Search-similar tool options
+ * @returns AI SDK tool that runs a Meilisearch similar-documents query
+ * @see {@link https://www.meilisearch.com/docs/reference/api/similar-documents/get-similar-documents-with-post.md}
+ */
 export function meilisearchSearchSimilar(options: SearchSimilarToolOptions): SearchSimilarTool {
   const { client, description, indexUid, searchSimilarParams } = options;
 
