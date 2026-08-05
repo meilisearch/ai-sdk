@@ -1,6 +1,13 @@
 import { tool } from "ai";
 import { z } from "zod";
 
+/**
+ * Temporary local copies of Meilisearch chat-route tool schemas.
+ *
+ * Source of truth should move to `meilisearch-js` (see HANDOFF.md). After that
+ * lands, this module should become a thin AI SDK `tool()` adapter over the SDK
+ * exports rather than owning the schemas itself.
+ */
 const meiliToolCallSchema = z
   .object({
     id: z.string(),
