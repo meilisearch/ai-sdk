@@ -1,7 +1,7 @@
 import type { Tool } from "ai";
 
-import type { MeilisearchIndexToolOptions } from "./types.ts";
+import type { IndexToolOptions } from "./types.ts";
 
-export function meilisearchSearchSimilar(_options: MeilisearchIndexToolOptions): Tool {
+export function meilisearchSearchSimilar(_options: IndexToolOptions): Tool {
   throw new Error("Not implemented");
 }

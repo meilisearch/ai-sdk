@@ -4,8 +4,8 @@ export {
   meilisearchSearchSimilar,
 } from "./tools/index.ts";
 export type {
-  MeilisearchToolClientOptions,
-  MeilisearchIndexToolOptions,
-  MeilisearchSearchToolOptions,
-  MeilisearchMultiSearchToolOptions,
+  ToolClientOptions,
+  IndexToolOptions,
+  SearchToolOptions,
+  MultiSearchToolOptions,
 } from "./tools/index.ts";

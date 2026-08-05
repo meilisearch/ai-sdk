@@ -1,18 +1,18 @@
 import type { Meilisearch, SearchParams } from "meilisearch";
 
-export type MeilisearchToolClientOptions = {
+export type ToolClientOptions = {
   client: Meilisearch;
   description: string;
 };
 
-export type MeilisearchIndexToolOptions = MeilisearchToolClientOptions & {
+export type IndexToolOptions = ToolClientOptions & {
   indexUid: string;
 };
 
-export type MeilisearchSearchToolOptions = MeilisearchIndexToolOptions & {
+export type SearchToolOptions = IndexToolOptions & {
   searchParams?: Omit<SearchParams, "q">;
 };
 
-export type MeilisearchMultiSearchToolOptions = MeilisearchToolClientOptions & {
+export type MultiSearchToolOptions = ToolClientOptions & {
   indexes: string[];
 };
