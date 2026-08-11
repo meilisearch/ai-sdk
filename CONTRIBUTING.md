@@ -41,6 +41,14 @@ To run this project, you will need:
 
 ### Setup
 
+You can set up your local environment natively or using `docker`, check out the [`docker-compose.yml`](/docker-compose.yml).
+
+Example of running all the checks with docker:
+
+```bash
+docker compose run --rm package bash -c "vp install && vp test && vp check"
+```
+
 To install dependencies:
 
 ```bash
