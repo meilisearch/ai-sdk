@@ -1,6 +1,21 @@
+<p align="center">
+  <a href="https://www.meilisearch.com/?utm_campaign=oss&utm_source=github&utm_medium=ai-sdk&utm_content=logo#gh-light-mode-only" target="_blank">
+    <img src="assets/meilisearch-logo-light.svg?sanitize=true#gh-light-mode-only">
+  </a>
+  <a href="https://www.meilisearch.com/?utm_campaign=oss&utm_source=github&utm_medium=ai-sdk&utm_content=logo#gh-dark-mode-only" target="_blank">
+    <img src="assets/meilisearch-logo-dark.svg?sanitize=true#gh-dark-mode-only">
+  </a>
+</p>
+
+<h4 align="center">
+  <a href="https://www.meilisearch.com/?utm_campaign=oss&utm_source=github&utm_medium=ai-sdk&utm_content=nav">Website</a> |
+  <a href="https://www.meilisearch.com/docs?utm_campaign=oss&utm_source=github&utm_medium=ai-sdk&utm_content=nav">Documentation</a> |
+  <a href="https://discord.meilisearch.com/?utm_campaign=oss&utm_source=github&utm_medium=ai-sdk&utm_content=nav">Discord</a>
+</h4>
+
 # Meilisearch AI SDK
 
-Meilisearch is a search engine for user-facing search and AI retrieval. `@meilisearch/ai-sdk` provides tools to add search to your [Vercel AI SDK](https://ai-sdk.dev) apps in a few lines of code.
+Meilisearch is a search engine for user-facing search and AI retrieval. `@meilisearch/ai-sdk` provides tools to integrate with the [Vercel AI SDK](https://ai-sdk.dev).
 
 ## Table of Contents
 
@@ -26,7 +41,7 @@ import { openai } from "@ai-sdk/openai";
 import { meilisearchSearch } from "@meilisearch/ai-sdk";
 
 const { text } = await generateText({
-  model: openai("gpt-4o"),
+  model: openai("gpt-5.4-mini"),
   system:
     "You are a movie assistant. Recommend films and where to stream them using the search tool.",
   tools: {
@@ -44,7 +59,7 @@ console.log(text);
 
 ## Setup
 
-1. Create a project on [Meilisearch Cloud](https://cloud.meilisearch.com/register) (or [self-host](https://www.meilisearch.com/docs/resources/self_hosting/getting_started/quick_start))
+1. Create a project on [Meilisearch Cloud](https://cloud.meilisearch.com/register) or [self-host](https://www.meilisearch.com/docs/resources/self_hosting/getting_started/quick_start)
 2. Create a `movies` index and [add documents](https://www.meilisearch.com/docs/resources/self_hosting/getting_started/quick_start#add-documents)
 3. Add your host and API key to `.env`:
 
@@ -59,7 +74,7 @@ Hybrid search with filters, sorting:
 
 ```ts
 const { text } = await generateText({
-  model: openai("gpt-4o"),
+  model: openai("gpt-5.4-mini"),
   system: "You are a movie assistant. Recommend films using the search tool.",
   prompt: "Recommend recent action movies about revenge",
   tools: {
@@ -148,7 +163,7 @@ meilisearchSearchSimilar({
   // or reuse an existing Meilisearch client instance
   // client,
 
-  description: "Find similar movies",
+  description: "Find similar movies by document ID",
 
   // Search target
   indexUid: "movies",
