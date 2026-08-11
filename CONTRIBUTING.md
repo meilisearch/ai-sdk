@@ -36,18 +36,9 @@ What we expect:
 
 To run this project, you will need:
 
-- [Node.js LTS](https://nodejs.org/en/about/previous-releases)
-- [pnpm](https://pnpm.io/installation#using-corepack)
+- [Vite+](https://viteplus.dev/guide/) (`vp` binary) — install with `curl -fsSL https://vite.plus | bash`
 
 ### Setup
-
-You can set up your local environment natively or using `docker`, check out the [`docker-compose.yml`](/docker-compose.yml).
-
-Example of running all the checks with docker:
-
-```bash
-docker compose run --rm package bash -c "vp install && vp test && vp check"
-```
 
 To install dependencies:
 
