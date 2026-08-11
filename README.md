@@ -15,7 +15,7 @@
 
 # Meilisearch AI SDK
 
-Meilisearch is a search engine for user-facing search and AI retrieval. `@meilisearch/ai-sdk` provides tools to integrate with the [Vercel AI SDK](https://ai-sdk.dev).
+Meilisearch is a search engine for user-facing search and AI retrieval. This library provides search tools to integrate with the [Vercel AI SDK](https://ai-sdk.dev).
 
 ## Table of Contents
 
