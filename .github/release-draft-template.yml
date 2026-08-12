@@ -1,0 +1,36 @@
+name-template: "v$RESOLVED_VERSION 🌻"
+tag-template: "v$RESOLVED_VERSION"
+categories:
+  - title: "⚠️ Breaking changes"
+    semver-increment: minor
+    when:
+      label: "breaking-change"
+  - title: "🚀 Enhancements"
+    when:
+      label: "enhancement"
+  - title: "🐛 Bug Fixes"
+    when:
+      label: "bug"
+  - title: "🔒 Security"
+    when:
+      label: "security"
+  - title: "⚙️ Maintenance/misc"
+    when:
+      labels:
+        - "dependencies"
+        - "maintenance"
+        - "documentation"
+  - type: "pre-exclude"
+    when:
+      label: "skip-changelog"
+  - type: "version-resolver"
+    semver-increment: patch
+template: |
+  $CHANGES
+
+  Thanks again to $CONTRIBUTORS! 🎉
+no-changes-template: "Changes are coming soon 😎"
+sort-direction: "ascending"
+replacers:
+  - search: "/(?:and )?@meili-bot,?/g"
+    replace: ""

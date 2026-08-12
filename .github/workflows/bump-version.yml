@@ -1,0 +1,51 @@
+name: Bump package version
+run-name: Bump package version to v${{ inputs.major }}.${{ inputs.minor }}.${{ inputs.patch }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      major:
+        description: "Major version number"
+        required: true
+        type: string
+      minor:
+        description: "Minor version number"
+        required: true
+        type: string
+      patch:
+        description: "Patch version number"
+        required: true
+        type: string
+
+env:
+  NEW_VERSION: ${{ inputs.major }}.${{ inputs.minor }}.${{ inputs.patch }}
+  NEW_BRANCH: workflow/bump-package-version-v${{ inputs.major }}.${{ inputs.minor }}.${{ inputs.patch }}
+  GH_TOKEN: ${{ secrets.MEILI_BOT_GH_PAT }}
+
+jobs:
+  update-version:
+    name: Update version in package.json
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - name: Bump package version
+        run: |
+          npm version ${{ env.NEW_VERSION }} --no-git-tag-version
+      - name: Commit and push the changes to the ${{ env.NEW_BRANCH }} branch
+        uses: EndBug/add-and-commit@v10
+        with:
+          message: "Update version for the next release (v${{ env.NEW_VERSION }}) in package.json"
+          new_branch: ${{ env.NEW_BRANCH }}
+          add: "package.json"
+      - name: Create the PR pointing to main
+        run: |
+          gh pr create \
+            --title "Update version for the next release (v$NEW_VERSION)" \
+            --body '_This PR is auto-generated._
+
+          The automated script updates the version of @meilisearch/ai-sdk to a new version: "v$NEW_VERSION"' \
+            --label 'skip-changelog' \
+            --base main \
+            --head ${{ env.NEW_BRANCH }}

@@ -1,0 +1,33 @@
+name: publish to npm
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish-npm:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v7
+      - name: Check release validity
+        run: sh .github/scripts/check-release.sh
+      - name: Check tag format
+        run: sh .github/scripts/check-tag-format.sh "${{ github.event.release.prerelease }}"
+
+      - uses: voidzero-dev/setup-vp@v1.17.0
+        with:
+          node-version: "24"
+          cache: true
+          registry-url: https://registry.npmjs.org/
+
+      - run: vp install
+      - name: Build package
+        run: vp pack
+      - name: Publish with latest tag
+        if: github.event.release.prerelease == false
+        run: pnpm publish --no-git-checks --provenance --access public
+      - name: Publish with beta tag
+        if: github.event.release.prerelease
+        run: pnpm publish --no-git-checks --provenance --access public --tag beta
