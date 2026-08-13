@@ -40,7 +40,7 @@
     "@ai-sdk/openai": "^4.0.28",
     "@types/node": "^26.1.1",
     "ai": "^7.0.50",
-    "bumpp": "^11.1.0",
+    "bumpp": "^12.2.0",
     "typescript": "^7.0.2",
     "vite": "catalog:",
     "vite-plus": "catalog:",
