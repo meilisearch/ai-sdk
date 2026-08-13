@@ -1,6 +1,6 @@
 {
   "name": "@meilisearch/ai-sdk",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Meilisearch tools for Vercel AI SDK",
   "homepage": "https://github.com/meilisearch/ai-sdk#readme",
   "bugs": {
