@@ -39,7 +39,7 @@
   "devDependencies": {
     "@ai-sdk/openai": "^4.0.28",
     "@types/node": "^26.1.1",
-    "ai": "^7.0.50",
+    "ai": "^7.0.58",
     "bumpp": "^11.1.0",
     "typescript": "^7.0.2",
     "vite": "catalog:",
@@ -47,7 +47,7 @@
     "zod": "^4.4.3"
   },
   "peerDependencies": {
-    "ai": "^7.0.50",
+    "ai": "^7.0.58",
     "zod": "^4.4.3"
   },
   "devEngines": {
