@@ -14,7 +14,7 @@ type MultiSearchTool = Tool<{ q: string }, MultiSearchResult>;
  *
  * @param options - Multi-search tool options
  * @returns AI SDK tool that runs a Meilisearch multi-search query
- * @see {@link https://www.meilisearch.com/docs/reference/api/multi-search/perform-a-multi-search.md}
+ * @see {@link https://www.meilisearch.com/docs/reference/api/multi-search/perform-a-multi-search}
  */
 export function meilisearchMultiSearch(options: MultiSearchToolOptions): MultiSearchTool {
   const client = resolveClient(options);

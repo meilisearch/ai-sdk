@@ -16,7 +16,7 @@ type SearchSimilarTool = Tool<{ id: string | number }, SearchSimilarResult>;
  *
  * @param options - Search-similar tool options
  * @returns AI SDK tool that runs a Meilisearch similar-documents query
- * @see {@link https://www.meilisearch.com/docs/reference/api/similar-documents/get-similar-documents-with-post.md}
+ * @see {@link https://www.meilisearch.com/docs/reference/api/similar-documents/get-similar-documents-with-post}
  */
 export function meilisearchSearchSimilar(options: SearchSimilarToolOptions): SearchSimilarTool {
   const client = resolveClient(options);

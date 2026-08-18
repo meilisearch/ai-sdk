@@ -124,7 +124,7 @@ meilisearchSearch({
 });
 ```
 
-For more details, see the [Search API reference](https://www.meilisearch.com/docs/reference/api/search/search-with-post.md).
+For more details, see the [Search API reference](https://www.meilisearch.com/docs/reference/api/search/search-with-post).
 
 ### Multi-search tool
 
@@ -151,7 +151,7 @@ meilisearchMultiSearch({
 });
 ```
 
-For more details, see the [Multi-search API reference](https://www.meilisearch.com/docs/reference/api/multi-search/perform-a-multi-search.md).
+For more details, see the [Multi-search API reference](https://www.meilisearch.com/docs/reference/api/multi-search/perform-a-multi-search).
 
 ### Search similar tool
 
@@ -176,7 +176,34 @@ meilisearchSearchSimilar({
 });
 ```
 
-For more details, see the [Similar documents API reference](https://www.meilisearch.com/docs/reference/api/similar-documents/get-similar-documents-with-post.md).
+For more details, see the [Similar documents API reference](https://www.meilisearch.com/docs/reference/api/similar-documents/get-similar-documents-with-post).
+
+### Facet search tool
+
+`facetName` must be listed in the index's `filterableAttributes`.
+
+```ts
+meilisearchFacetSearch({
+  // Connect with host + API key
+  host: "MEILISEARCH_HOST",
+  apiKey: "YOUR_SEARCH_API_KEY",
+  // or reuse an existing Meilisearch client instance
+  // client,
+
+  description: "Find matching values for the category facet",
+
+  // Search target
+  indexUid: "movies",
+  facetName: "category",
+
+  // Optional facet-search params (except facetName; facetQuery is optional at runtime — omit to list values)
+  facetSearchParams: {
+    filter: "release_year > 2000",
+  },
+});
+```
+
+For more details, see the [Facet search API reference](https://www.meilisearch.com/docs/reference/api/facet-search/search-for-facet-values).
 
 ## Contributing
 

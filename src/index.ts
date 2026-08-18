@@ -2,6 +2,7 @@ export {
   meilisearchSearch,
   meilisearchMultiSearch,
   meilisearchSearchSimilar,
+  meilisearchFacetSearch,
 } from "./tools/index.ts";
 export type {
   ToolClientOptions,
@@ -9,4 +10,5 @@ export type {
   SearchToolOptions,
   MultiSearchToolOptions,
   SearchSimilarToolOptions,
+  FacetSearchToolOptions,
 } from "./tools/index.ts";
