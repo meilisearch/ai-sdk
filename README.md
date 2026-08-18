@@ -124,7 +124,7 @@ meilisearchSearch({
 });
 ```
 
-For more details, see the [Search API reference](https://www.meilisearch.com/docs/reference/api/search/search-with-post.md).
+For more details, see the [Search API reference](https://www.meilisearch.com/docs/reference/api/search/search-with-post).
 
 ### Multi-search tool
 
@@ -151,7 +151,7 @@ meilisearchMultiSearch({
 });
 ```
 
-For more details, see the [Multi-search API reference](https://www.meilisearch.com/docs/reference/api/multi-search/perform-a-multi-search.md).
+For more details, see the [Multi-search API reference](https://www.meilisearch.com/docs/reference/api/multi-search/perform-a-multi-search).
 
 ### Search similar tool
 
@@ -176,7 +176,7 @@ meilisearchSearchSimilar({
 });
 ```
 
-For more details, see the [Similar documents API reference](https://www.meilisearch.com/docs/reference/api/similar-documents/get-similar-documents-with-post.md).
+For more details, see the [Similar documents API reference](https://www.meilisearch.com/docs/reference/api/similar-documents/get-similar-documents-with-post).
 
 ### Facet search tool
 
@@ -203,7 +203,7 @@ meilisearchFacetSearch({
 });
 ```
 
-For more details, see the [Facet search API reference](https://www.meilisearch.com/docs/reference/api/facet-search/search-for-facet-values.md).
+For more details, see the [Facet search API reference](https://www.meilisearch.com/docs/reference/api/facet-search/search-for-facet-values).
 
 ## Contributing
 

@@ -16,7 +16,7 @@ type FacetSearchTool = Tool<{ facetQuery?: string }, FacetSearchResult>;
  *
  * @param options - Facet search tool options
  * @returns AI SDK tool that runs a Meilisearch facet-search query
- * @see {@link https://www.meilisearch.com/docs/reference/api/facet-search/search-for-facet-values.md}
+ * @see {@link https://www.meilisearch.com/docs/reference/api/facet-search/search-for-facet-values}
  */
 export function meilisearchFacetSearch(options: FacetSearchToolOptions): FacetSearchTool {
   const client = resolveClient(options);

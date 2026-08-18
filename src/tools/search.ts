@@ -14,7 +14,7 @@ type SearchTool = Tool<{ q: string }, SearchResult>;
  *
  * @param options - Search tool options
  * @returns AI SDK tool that runs a Meilisearch search query
- * @see {@link https://www.meilisearch.com/docs/reference/api/search/search-with-post.md}
+ * @see {@link https://www.meilisearch.com/docs/reference/api/search/search-with-post}
  */
 export function meilisearchSearch(options: SearchToolOptions): SearchTool {
   const client = resolveClient(options);
