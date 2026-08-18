@@ -3,6 +3,7 @@ import type {
   MultiSearchFederation,
   MultiSearchQuery,
   MultiSearchQueryWithFederation,
+  SearchForFacetValuesParams,
   SearchParams,
   SearchSimilarDocumentsParams,
 } from "meilisearch";
@@ -35,4 +36,9 @@ export type MultiSearchToolOptions = ToolClientOptions & {
 
 export type SearchSimilarToolOptions = IndexToolOptions & {
   searchSimilarParams?: Omit<SearchSimilarDocumentsParams, "id">;
+};
+
+export type FacetSearchToolOptions = IndexToolOptions & {
+  facetName: string;
+  facetSearchParams?: Omit<SearchForFacetValuesParams, "facetName" | "facetQuery">;
 };
