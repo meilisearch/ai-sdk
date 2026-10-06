@@ -23,6 +23,7 @@ Meilisearch is a search engine for user-facing search and AI retrieval. This lib
 - [Quick Start](#quick-start)
 - [Setup](#setup)
 - [Example](#example)
+- [Using Meilisearch MCP](#using-meilisearch-mcp)
 - [API Reference](#api-reference)
 - [Contributing](#contributing)
 - [License](#license)
@@ -97,6 +98,46 @@ const { text } = await generateText({
 
 console.log(text);
 ```
+
+## Using Meilisearch MCP
+
+You can also connect your agent to the **Meilisearch MCP server**. The AI SDK can wrap tools from MCP servers and expose them like any other tool.
+
+```bash
+npm install @ai-sdk/mcp
+```
+
+```ts
+import { createMCPClient } from "@ai-sdk/mcp";
+import { generateText, isStepCount } from "ai";
+import { openai } from "@ai-sdk/openai";
+
+const mcpClient = await createMCPClient({
+  transport: {
+    type: "http",
+    url: "https://your-project.meilisearch.io/mcp",
+    headers: { Authorization: "Bearer YOUR_API_KEY" },
+  },
+});
+
+try {
+  const tools = await mcpClient.tools();
+
+  const { text } = await generateText({
+    model: openai("gpt-5.4-mini"),
+    tools,
+    // Allow several steps: list indexes, describe, search, then answer
+    stopWhen: isStepCount(5),
+    prompt: "Recommend recent action movies about revenge",
+  });
+
+  console.log(text);
+} finally {
+  await mcpClient.close();
+}
+```
+
+For the list of available tools, limitations, and troubleshooting, see the [Meilisearch MCP documentation](https://www.meilisearch.com/docs/getting_started/integrations/mcp). For more on using MCP servers with the AI SDK, see the [AI SDK MCP documentation](https://ai-sdk.dev/docs/ai-sdk-core/mcp-tools).
 
 ## API Reference
 
