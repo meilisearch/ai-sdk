@@ -137,7 +137,7 @@ try {
 }
 ```
 
-For the list of available tools, limitations, and troubleshooting, see the [Meilisearch MCP documentation](https://www.meilisearch.com/docs/getting_started/integrations/mcp). For more on using MCP servers with the AI SDK, see the [AI SDK MCP documentation](https://ai-sdk.dev/docs/ai-sdk-core/mcp-tools).
+For the list of available tools, limitations, and troubleshooting, see the [Meilisearch MCP documentation](https://www.meilisearch.com/docs/getting_started/integrations/mcp).
 
 ## API Reference
 
