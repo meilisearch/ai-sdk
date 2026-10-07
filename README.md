@@ -219,6 +219,23 @@ meilisearchSearchSimilar({
 
 For more details, see the [Similar documents API reference](https://www.meilisearch.com/docs/reference/api/similar-documents/get-similar-documents-with-post.md).
 
+### Client identification
+
+When you connect with `host` + `apiKey`, the tools create a Meilisearch client that identifies this integration in the `X-Meilisearch-Client` header (`Meilisearch Vercel AI SDK (vX.Y.Z)`), next to the `Meilisearch JavaScript` agent added by the JavaScript SDK.
+
+If you reuse an existing `client`, it is used as is. To keep the same identification, pass the agent when you create it:
+
+```ts
+import { Meilisearch } from "meilisearch";
+import { CLIENT_AGENT } from "@meilisearch/ai-sdk";
+
+const client = new Meilisearch({
+  host: "MEILISEARCH_HOST",
+  apiKey: "YOUR_SEARCH_API_KEY",
+  clientAgents: [CLIENT_AGENT],
+});
+```
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
