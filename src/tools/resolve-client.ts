@@ -9,7 +9,7 @@ import type { ToolClientOptions } from "./types.ts";
  * It lets Meilisearch identify requests coming from this integration, in
  * addition to the `Meilisearch JavaScript (vX.Y.Z)` agent added by meilisearch-js.
  */
-export const CLIENT_AGENT = `Meilisearch Vercel AI SDK (v${pkg.version})`;
+export const CLIENT_AGENT = `Meilisearch AI SDK (v${pkg.version})`;
 
 /**
  * Resolve a Meilisearch client from either an existing client or host/apiKey.

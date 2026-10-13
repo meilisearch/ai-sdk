@@ -221,7 +221,7 @@ For more details, see the [Similar documents API reference](https://www.meilisea
 
 ### Client identification
 
-When you connect with `host` + `apiKey`, the tools create a Meilisearch client that identifies this integration in the `X-Meilisearch-Client` header (`Meilisearch Vercel AI SDK (vX.Y.Z)`), next to the `Meilisearch JavaScript` agent added by the JavaScript SDK.
+When the tools create the Meilisearch client (`host`, `apiKey` optional), they identify this integration in the `X-Meilisearch-Client` header (`Meilisearch AI SDK (vX.Y.Z)`), next to the `Meilisearch JavaScript` agent added by the JavaScript SDK.
 
 If you reuse an existing `client`, it is used as is. To keep the same identification, pass the agent when you create it:
 
